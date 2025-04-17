@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package greeter;
+
+option go_package = "github.com/go-matina/kratos-layout/api/greeter;greeter";
+option java_multiple_files = true;
+option java_package = "dev.matina.api.greeter";
+option objc_class_prefix = "APIGreeterV1";
+
+enum ErrorReason {
+  GREETER_UNSPECIFIED = 0;
+  USER_NOT_FOUND = 1;
+}
