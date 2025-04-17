@@ -55,6 +55,9 @@ generate:
 	go generate ./...
 	go mod tidy
 
+.PHONY: errors
+
+
 .PHONY: all
 # generate all
 all:

@@ -1,7 +1,7 @@
 package server
 
 import (
-	v1 "github.com/go-matina/kratos-layout/api/helloworld/v1"
+	g "github.com/go-matina/kratos-layout/api/greeter"
 	"github.com/go-matina/kratos-layout/internal/conf"
 	"github.com/go-matina/kratos-layout/internal/service"
 
@@ -27,6 +27,6 @@ func NewHTTPServer(c *conf.Server, greeter *service.GreeterService, logger log.L
 		opts = append(opts, http.Timeout(c.Http.Timeout.AsDuration()))
 	}
 	srv := http.NewServer(opts...)
-	v1.RegisterGreeterHTTPServer(srv, greeter)
+	g.RegisterGreeterHTTPServer(srv, greeter)
 	return srv
 }
