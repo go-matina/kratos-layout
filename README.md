@@ -1,5 +1,10 @@
 # Kratos Project Template
 
+## Set ENV
+```
+export KRATOS_LAYOUT_REPO=https://github.com/go-matina/kratos-layout.git
+```
+
 ## Install Kratos
 ```
 go install github.com/go-kratos/kratos/cmd/kratos/v2@latest
