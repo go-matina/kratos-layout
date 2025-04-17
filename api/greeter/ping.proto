@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package greeter;
+
+import "google/api/annotations.proto";
+
+option go_package = "github.com/go-matina/kratos-layout/api/greeter;greeter";
+option java_multiple_files = true;
+option java_package = "dev.matina.api.greeter";
+
+option java_outer_classname = "GreeterProto";
+// The greeting service definition.
+service Greeter {
+	// Sends a greeting
+	rpc Ping (PingRequest) returns (PingReply) {
+		option (google.api.http) = {
+			get: "/ping/{name}"
+		};
+	}
+}
+
+// The request message containing the user's name.
+message PingRequest {
+	string name = 1;
+}
+
+// The response message containing the greetings
+message PingReply {
+	string message = 1;
+}
