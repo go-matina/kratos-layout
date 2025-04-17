@@ -174,7 +174,7 @@ const file_greeter_greeter_proto_rawDesc = "" +
 	"\x0fCONTENT_MISSING\x10\x01\x1a\x04\xa8E\x90\x03\x1a\x04\xa0E\xf4\x032Q\n" +
 	"\aGreeter\x12F\n" +
 	"\x04Ping\x12\x14.greeter.PingRequest\x1a\x12.greeter.PingReply\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/ping/{name}B`\n" +
-	"\x16dev.matina.api.greeterB\fGreeterProtoP\x01Z6github.com/go-matina/kratos-layout/api/greeter;greeterb\x06proto3"
+	"\x16dev.matina.api.greeterB\fGreeterProtoP\x01Z\x19github.com/go-matina/kratos-layout/api/greeter;greeterb\x06proto3"
 
 var (
 	file_greeter_greeter_proto_rawDescOnce sync.Once
