@@ -41,6 +41,7 @@ api:
  	       --go_out=paths=source_relative:./api \
  	       --go-http_out=paths=source_relative:./api \
  	       --go-grpc_out=paths=source_relative:./api \
+		   --go-errors_out=paths=source_relative:./api \
 	       --openapi_out=fq_schema_naming=true,default_response=false:. \
 	       $(API_PROTO_FILES)
 
@@ -54,8 +55,6 @@ build:
 generate:
 	go generate ./...
 	go mod tidy
-
-.PHONY: errors
 
 
 .PHONY: all
