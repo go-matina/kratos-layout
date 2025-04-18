@@ -4,7 +4,9 @@ import (
 	"flag"
 	"os"
 
+	"github.com/go-kratos/kratos/contrib/registry/etcd/v2"
 	"github.com/go-matina/kratos-layout/internal/conf"
+	clientv3 "go.etcd.io/etcd/client/v3"
 
 	"github.com/go-kratos/kratos/v2"
 	"github.com/go-kratos/kratos/v2/config"
@@ -33,7 +35,24 @@ func init() {
 	flag.StringVar(&flagconf, "conf", "../../configs", "config path, eg: -conf config.yaml")
 }
 
-func newApp(logger log.Logger, gs *grpc.Server, hs *http.Server) *kratos.App {
+func newApp(logger log.Logger, gs *grpc.Server, hs *http.Server, conf *conf.Bootstrap) *kratos.App {
+	enableEtcdDiscovery := len(conf.Data.Etcd.Endpoints) > 0
+	var registrar kratos.Option
+
+	// 启用 etcd 作为注册中心
+	if enableEtcdDiscovery {
+		client, err := clientv3.New(clientv3.Config{
+			Endpoints: conf.Data.Etcd.Endpoints,
+		})
+
+
+		if err != nil {
+			panic(err)
+		}
+
+		registrar = kratos.Registrar(etcd.New(client))
+	}
+
 	return kratos.New(
 		kratos.ID(id),
 		kratos.Name(Name),
@@ -44,6 +63,7 @@ func newApp(logger log.Logger, gs *grpc.Server, hs *http.Server) *kratos.App {
 			gs,
 			hs,
 		),
+		registrar,
 	)
 }
 
@@ -74,7 +94,7 @@ func main() {
 		panic(err)
 	}
 
-	app, cleanup, err := wireApp(bc.Server, bc.Data, logger)
+	app, cleanup, err := wireApp(bc.Server, bc.Data, logger, &bc)
 	if err != nil {
 		panic(err)
 	}

@@ -17,6 +17,8 @@ vendor/
 # Go workspace file
 go.work
 
+*.local.go
+
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
 *.o
 *.a
